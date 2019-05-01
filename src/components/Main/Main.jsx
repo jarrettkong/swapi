@@ -5,21 +5,49 @@ import CardArea from '../CardArea/CardArea';
 export class Main extends Component {
 	state = {
 		results: [],
-		term: ''
 	};
 
 	handleClick = e => {
-		const { name } = e.target;
-		this.setState({ term: name }, () => {
-			this.searchApi();
-		});
+		const term = e.target.name;
+		this.searchApi(term);
 	};
 
-	searchApi = () => {
-		const { term } = this.state;
+	fetchHomeworld = homeworld => {
+		return fetch(homeworld)
+			.then(res => res.json())
+			.then(planet => planet)
+			.catch(err => console.log(err));
+	};
+
+	fetchSpecies = species => {
+		return fetch(species)
+			.then(res => res.json())
+			.then(species => species)
+			.catch(err => console.log(err));
+	};
+
+	fetchMissingData = results => {
+		const promises = results.map(result => {
+			const speciesPromise = this.fetchSpecies(result.species[0]);
+			const homeworldPromise = this.fetchHomeworld(result.homeworld);
+			return Promise.all([speciesPromise, homeworldPromise]).then(data => ({
+				...result,
+				species: data[0],
+				homeworld: data[1]
+			}));
+		});
+		return Promise.all(promises);
+	};
+
+	searchApi = term => {
 		fetch(`https://swapi.co/api/${term}`)
 			.then(res => res.json())
-			.then(data => this.setState({ results: data.results }))
+			.then(data => this.fetchMissingData(data.results))
+			.then(results =>
+				this.setState({ results }, () => {
+					console.log('results', this.state.results);
+				})
+			)
 			.catch(err => console.log(err));
 	};
 
