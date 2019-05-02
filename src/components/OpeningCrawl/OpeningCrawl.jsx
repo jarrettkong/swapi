@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './_OpeningCrawl.scss';
 
 class OpeningCrawl extends Component {
 	state = {

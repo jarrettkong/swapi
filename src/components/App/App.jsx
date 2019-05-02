@@ -1,7 +1,7 @@
 import React from 'react';
 import OpeningCrawl from '../OpeningCrawl/OpeningCrawl';
 import Main from '../Main/Main';
-import './App.scss';
+import './_App.scss';
 
 const App = () => {
 	return (

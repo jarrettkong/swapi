@@ -16,40 +16,49 @@ export class Main extends Component {
 
 	handleClick = e => {
 		const category = e.target.name;
+		const { results } = this.state;
 		this.setState({ category }, () => {
-			switch (category) {
-				case 'people':
-					this.fetchPeople();
-					break;
-				case 'planets':
-					this.fetchPlanets();
-					break;
-				case 'vehicles':
-					this.fetchVehicles();
-					break;
-				default:
-					break;
+			if (!results[category].length) {
+				console.log('fetching');
+				switch (category) {
+					case 'people':
+						this.fetchPeople();
+						break;
+					case 'planets':
+						this.fetchPlanets();
+						break;
+					case 'vehicles':
+						this.fetchVehicles();
+						break;
+					default:
+						break;
+				}
 			}
 		});
 	};
 
+	fetchPeople = () => {
+		const { results } = this.state;
+		searchApi('people')
+			.then(people => fetchHomeworld(people.results))
+			.then(people => fetchSpecies(people))
+			.then(people => this.setState({ results: { ...results, people } }))
+			.catch(err => console.log(err));
+	};
+
 	fetchPlanets = () => {
+		const { results } = this.state;
 		searchApi('planets')
 			.then(planets => fetchResidents(planets.results))
+			.then(planets => this.setState({ results: { ...results, planets } }))
 			.catch(err => console.log(err));
 	};
 
 	fetchVehicles = () => {
+		const { results } = this.state;
 		searchApi('vehicles')
-			.then(vehicles => console.log(vehicles.results))
-			.catch(err => console.log(err));
-	};
-
-	fetchPeople = () => {
-		searchApi('people')
-			.then(people => fetchHomeworld(people.results))
-			.then(people => fetchSpecies(people))
-			.then(results => this.setState({ results }))
+			.then(vehicles => vehicles.results)
+			.then(vehicles => this.setState({ results: { ...results, vehicles } }))
 			.catch(err => console.log(err));
 	};
 
@@ -59,7 +68,7 @@ export class Main extends Component {
 			<section className="Main">
 				<h1>Swapi</h1>
 				<Options handleClick={this.handleClick} />
-				{this.state.category && <CardArea results={results[category]} />}
+				{this.state.category && <CardArea category={category} results={results[category]} />}
 			</section>
 		);
 	}

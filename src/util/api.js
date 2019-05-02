@@ -11,7 +11,7 @@ export const fetchResidents = planets => {
 	const promises = planets.map(planet => {
 		return fetchResidentNames(planet.residents).then(residents => ({ ...planet, residents }));
 	});
-	Promise.all(promises).then(planets => console.log(planets));
+	return Promise.all(promises);
 };
 
 const fetchResidentNames = residents => {
