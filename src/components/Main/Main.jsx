@@ -1,62 +1,65 @@
 import React, { Component } from 'react';
 import Options from '../Options/Options';
 import CardArea from '../CardArea/CardArea';
+import { fetchHomeworld, fetchSpecies, searchApi, fetchResidents } from '../../util/api';
 
 export class Main extends Component {
 	state = {
-		results: [],
+		results: {
+			people: [],
+			planets: [],
+			vehicles: []
+		},
+		category: '',
+		showFavorites: false
 	};
 
 	handleClick = e => {
-		const term = e.target.name;
-		this.searchApi(term);
-	};
-
-	fetchHomeworld = homeworld => {
-		return fetch(homeworld)
-			.then(res => res.json())
-			.then(planet => planet)
-			.catch(err => console.log(err));
-	};
-
-	fetchSpecies = species => {
-		return fetch(species)
-			.then(res => res.json())
-			.then(species => species)
-			.catch(err => console.log(err));
-	};
-
-	fetchMissingData = results => {
-		const promises = results.map(result => {
-			const speciesPromise = this.fetchSpecies(result.species[0]);
-			const homeworldPromise = this.fetchHomeworld(result.homeworld);
-			return Promise.all([speciesPromise, homeworldPromise]).then(data => ({
-				...result,
-				species: data[0],
-				homeworld: data[1]
-			}));
+		const category = e.target.name;
+		this.setState({ category }, () => {
+			switch (category) {
+				case 'people':
+					this.fetchPeople();
+					break;
+				case 'planets':
+					this.fetchPlanets();
+					break;
+				case 'vehicles':
+					this.fetchVehicles();
+					break;
+				default:
+					break;
+			}
 		});
-		return Promise.all(promises);
 	};
 
-	searchApi = term => {
-		fetch(`https://swapi.co/api/${term}`)
-			.then(res => res.json())
-			.then(data => this.fetchMissingData(data.results))
-			.then(results =>
-				this.setState({ results }, () => {
-					console.log('results', this.state.results);
-				})
-			)
+	fetchPlanets = () => {
+		searchApi('planets')
+			.then(planets => fetchResidents(planets.results))
+			.catch(err => console.log(err));
+	};
+
+	fetchVehicles = () => {
+		searchApi('vehicles')
+			.then(vehicles => console.log(vehicles.results))
+			.catch(err => console.log(err));
+	};
+
+	fetchPeople = () => {
+		searchApi('people')
+			.then(people => fetchHomeworld(people.results))
+			.then(people => fetchSpecies(people))
+			.then(results => this.setState({ results }))
 			.catch(err => console.log(err));
 	};
 
 	render() {
+		const { category, results } = this.state;
 		return (
 			<section className="Main">
 				<h1>Swapi</h1>
 				<Options handleClick={this.handleClick} />
-				<CardArea results={this.state.results} />
+				{this.state.category && <CardArea results={results[category]} />}
 			</section>
 		);
 	}
