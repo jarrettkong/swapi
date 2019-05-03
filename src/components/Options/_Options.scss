@@ -1,0 +1,16 @@
+.Options {
+	border: 1px solid red;
+}
+
+.Options-btn {
+	background: transparent;
+	border: 1px solid white;
+	color: white;
+	margin: 0 25px;
+	padding: 50px;
+	font-size: 40px;
+	cursor: pointer;
+	&:focus {
+		outline: transparent;
+	}
+}

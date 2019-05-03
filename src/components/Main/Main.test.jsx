@@ -13,12 +13,22 @@ describe('Main', () => {
 	});
 
 	it('should have a default state', () => {
-		expect(wrapper.state()).toEqual({ results: [], term: '' });
+		const state = {
+			results: {
+				people: [],
+				planets: [],
+				vehicles: []
+			},
+			loading: false,
+			category: '',
+			showFavorites: false
+		};
+		expect(wrapper.state()).toEqual(state);
 	});
 
 	it('should update state when handleClick is invoked', () => {
 		const e = { target: { name: 'people' } };
 		wrapper.instance().handleClick(e);
-		expect(wrapper.state('term')).toEqual('people');
+		expect(wrapper.state('category')).toEqual('people');
 	});
 });

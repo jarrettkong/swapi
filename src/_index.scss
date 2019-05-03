@@ -1,0 +1,25 @@
+// @import './components/App/App';
+// @import './components/CardArea/CardArea';
+// @import './components/Main/Main';
+// @import './components/OpeningCrawl/OpeningCrawl';
+// @import './components/Options/Options';
+// @import './components/Person/Person';
+// @import './components/Planet/Planet';
+// @import './components/Vehicle/Vehicle';
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+	font-family: "Roboto", sans-serif;
+	height: 100vh;
+	width: 100vw;
+	font-size: 16px;
+	color: white;
+}
