@@ -7,40 +7,6 @@ export const searchApi = term => {
 	});
 };
 
-export const fetchHomeworld = people => {
-	const promises = people.map(person => {
-		return fetch(person.homeworld)
-			.then(res => res.json())
-			.then(homeworld => ({ ...person, homeworld }));
-	});
-	return Promise.all(promises);
-};
-
-export const fetchSpecies = people => {
-	const promises = people.map(person => {
-		return fetch(person.species[0])
-			.then(res => res.json())
-			.then(species => ({ ...person, species }));
-	});
-	return Promise.all(promises);
-};
-
-export const fetchResidents = planets => {
-	const promises = planets.map(planet => {
-		return fetchResidentNames(planet.residents).then(residents => ({ ...planet, residents }));
-	});
-	return Promise.all(promises);
-};
-
-const fetchResidentNames = residents => {
-	const promises = residents.map(resident => {
-		return fetch(resident)
-			.then(res => res.json())
-			.then(data => data.name);
-	});
-	return Promise.all(promises);
-};
-
 export const fetchMovie = rand => {
 	return fetch(`https://swapi.co/api/films/${rand}`).then(res => {
 		if (!res.ok) {
@@ -49,3 +15,82 @@ export const fetchMovie = rand => {
 		return res.json();
 	});
 };
+
+// export const fetchHomeworld = people => {
+// 	const promises = people.map(person => {
+// 		return fetch(person.homeworld)
+// 			.then(res => res.json())
+// 			.then(homeworld => ({ ...person, homeworld }))
+// 			.catch(err => err);
+// 	});
+// 	return Promise.all(promises);
+// };
+
+export const fetchHomeworld = people => {
+	const promises = people.map(person => {
+		return fetch(person.homeworld)
+			.then(res => {
+				if (!res.ok) {
+					throw new Error('Unable to fetch homeworld');
+				}
+				return res.json();
+			})
+			.then(homeworld => ({ ...person, homeworld }));
+	});
+	return Promise.all(promises);
+};
+
+export const fetchSpecies = people => {
+	const promises = people.map(person => {
+		return fetch(person.species[0])
+			.then(res => {
+				if (!res.ok) {
+					throw new Error('Unable to fetch species');
+				}
+				return res.json();
+			})
+			.then(species => ({ ...person, species }));
+	});
+	return Promise.all(promises);
+};
+
+// export const fetchSpecies = people => {
+// 	const promises = people.map(person => {
+// 		return fetch(person.species[0])
+// 			.then(res => res.json())
+// 			.then(species => ({ ...person, species }))
+// 			.catch(err => err);
+// 	});
+// 	return Promise.all(promises);
+// };
+
+export const fetchResidents = planets => {
+	const promises = planets.map(planet => {
+		return fetchResidentNames(planet.residents).then(residents => ({ ...planet, residents }));
+	});
+	return Promise.all(promises);
+};
+
+export const fetchResidentNames = residents => {
+	const promises = residents.map(resident => {
+		return fetch(resident)
+			.then(res => {
+				if (!res.ok) {
+					throw new Error('Unable to fetch names');
+				}
+				return res.json();
+			})
+			.then(person => person.name);
+	});
+	return Promise.all(promises);
+};
+
+// const fetchResidentNames = residents => {
+// 	const promises = residents.map(resident => {
+// 		return fetch(resident)
+// 			.then(res => res.json())
+// 			.then(resident => resident.name)
+// 			.catch(err => new Error(err.message));
+// 	});
+// 	return Promise.all(promises);
+// };

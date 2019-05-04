@@ -10,9 +10,7 @@ class OpeningCrawl extends Component {
 	};
 
 	componentDidMount() {
-		this.setState({ loading: true }, () => {
-			this.getMovie();
-		});
+		this.setState({ loading: true }, this.getMovie);
 	}
 
 	getMovie = () => {

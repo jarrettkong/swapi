@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import OpeningCrawl from './OpeningCrawl';
 import { mockFilm } from '../../util/mockData';
 
@@ -16,7 +16,6 @@ describe('OpeningCrawl', () => {
 	it('should have initial state', () => {
 		expect(wrapper.state()).toEqual({
 			film: {},
-			//TODO how to test false before mount?
 			loading: true,
 			error: ''
 		});
