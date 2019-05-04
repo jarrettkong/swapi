@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { fetchMovie } from '../../util/api';
+import Loader from '../Loader/Loader';
 import './_OpeningCrawl.scss';
 
 class OpeningCrawl extends Component {
@@ -30,11 +31,7 @@ class OpeningCrawl extends Component {
 
 		const episodeNumber = `Episode ${this.getRomanNumeral(episode)}`;
 		const display = this.state.loading ? (
-			<div class="App-loading">
-				<div />
-				<div />
-				<div />
-			</div>
+			<Loader />
 		) : (
 			<div className="OpeningCrawl-text">
 				<p className="OpeningCrawl-episde">{episodeNumber}</p>

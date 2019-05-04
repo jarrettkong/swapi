@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Options from '../Options/Options';
 import CardArea from '../CardArea/CardArea';
+import Loader from '../Loader/Loader';
 import { fetchHomeworld, fetchSpecies, searchApi, fetchResidents } from '../../util/api';
 import './_Main.scss';
 
@@ -69,11 +70,7 @@ export class Main extends Component {
 	render() {
 		const { category, results, loading } = this.state;
 		const display = loading ? (
-			<div class="App-loading">
-				<div />
-				<div />
-				<div />
-			</div>
+			<Loader />
 		) : category ? (
 			<CardArea category={category} results={results[category]} />
 		) : null;
