@@ -16,16 +16,6 @@ export const fetchMovie = rand => {
 	});
 };
 
-// export const fetchHomeworld = people => {
-// 	const promises = people.map(person => {
-// 		return fetch(person.homeworld)
-// 			.then(res => res.json())
-// 			.then(homeworld => ({ ...person, homeworld }))
-// 			.catch(err => err);
-// 	});
-// 	return Promise.all(promises);
-// };
-
 export const fetchHomeworld = people => {
 	const promises = people.map(person => {
 		return fetch(person.homeworld)
@@ -54,16 +44,6 @@ export const fetchSpecies = people => {
 	return Promise.all(promises);
 };
 
-// export const fetchSpecies = people => {
-// 	const promises = people.map(person => {
-// 		return fetch(person.species[0])
-// 			.then(res => res.json())
-// 			.then(species => ({ ...person, species }))
-// 			.catch(err => err);
-// 	});
-// 	return Promise.all(promises);
-// };
-
 export const fetchResidents = planets => {
 	const promises = planets.map(planet => {
 		return fetchResidentNames(planet.residents).then(residents => ({ ...planet, residents }));
@@ -85,12 +65,3 @@ export const fetchResidentNames = residents => {
 	return Promise.all(promises);
 };
 
-// const fetchResidentNames = residents => {
-// 	const promises = residents.map(resident => {
-// 		return fetch(resident)
-// 			.then(res => res.json())
-// 			.then(resident => resident.name)
-// 			.catch(err => new Error(err.message));
-// 	});
-// 	return Promise.all(promises);
-// };
