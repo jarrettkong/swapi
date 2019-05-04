@@ -10,7 +10,7 @@ const Planet = props => {
 			<p>Population: {population}</p>
 			<p>Terrain: {terrain}</p>
 			<p>Climate: {climate}</p>
-			<p>Residents: {residents.join(', ')}</p>
+			<p>Residents: {residents.join(', ') || 'N/A'}</p>
 		</article>
 	);
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import './_Options.scss';
 
 const Options = props => {
 	return (

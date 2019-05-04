@@ -1,29 +1,46 @@
 import React, { Component } from 'react';
+import { fetchMovie } from '../../util/api';
 import './_OpeningCrawl.scss';
 
 class OpeningCrawl extends Component {
 	state = {
-		film: {}
+		film: {},
+		loading: false,
+		error: ''
 	};
 
 	componentDidMount() {
-		const rand = Math.floor(Math.random() * 7) + 1;
-		fetch(`https://swapi.co/api/films/${rand}`)
-			.then(res => res.json())
-			.then(film => this.setState({ film }))
-			.catch(err => console.log(err));
+		this.setState({ loading: true }, this.getMovie);
 	}
 
+	getMovie = () => {
+		const rand = Math.floor(Math.random() * 7) + 1;
+		return fetchMovie(rand)
+			.then(film => this.setState({ film, loading: false }))
+			.catch(error => this.setState({ error: error.message }));
+	};
+
+	getRomanNumeral = num => {
+		const numerals = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII'];
+		return numerals[num - 1];
+	};
+
 	render() {
-		const { opening_crawl: openingCrawl, title, release_date: releaseDate } = this.state.film;
-		return (
-			<aside className="OpeningCrawl">
-				<p className="OpeningCrawl-text">{openingCrawl}</p>
-				<p className="OpeningCrawl-info">
-					{title} | {releaseDate}
-				</p>
-			</aside>
+		const { opening_crawl: openingCrawl, title, release_date: releaseDate, episode_id: episode } = this.state.film;
+
+		const episodeNumber = `Episode ${this.getRomanNumeral(episode)}`;
+		const display = this.state.loading ? (
+			<h3>Loading...</h3>
+		) : (
+			<div className="OpeningCrawl-text">
+				<p className="OpeningCrawl-episde">{episodeNumber}</p>
+				<p className="OpeningCrawl-title">{title}</p>
+				<p>{openingCrawl}</p>
+				<p className="OpeningCrawl-release">{releaseDate}</p>
+			</div>
 		);
+
+		return <aside className="OpeningCrawl">{display}</aside>;
 	}
 }
 

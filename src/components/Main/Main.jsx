@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Options from '../Options/Options';
 import CardArea from '../CardArea/CardArea';
 import { fetchHomeworld, fetchSpecies, searchApi, fetchResidents } from '../../util/api';
+import './_Main.scss';
 
 export class Main extends Component {
 	state = {
@@ -10,6 +11,7 @@ export class Main extends Component {
 			planets: [],
 			vehicles: []
 		},
+		loading: false,
 		category: '',
 		showFavorites: false
 	};
@@ -19,7 +21,6 @@ export class Main extends Component {
 		const { results } = this.state;
 		this.setState({ category }, () => {
 			if (!results[category].length) {
-				console.log('fetching');
 				switch (category) {
 					case 'people':
 						this.fetchPeople();
@@ -66,7 +67,7 @@ export class Main extends Component {
 		const { category, results } = this.state;
 		return (
 			<section className="Main">
-				<h1>Swapi</h1>
+				<h1 className="Main-header">Swapi</h1>
 				<Options handleClick={this.handleClick} />
 				{this.state.category && <CardArea category={category} results={results[category]} />}
 			</section>
