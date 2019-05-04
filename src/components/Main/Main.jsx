@@ -16,11 +16,14 @@ export class Main extends Component {
 		showFavorites: false
 	};
 
+	componentDidMount() {}
+
 	handleClick = e => {
 		const category = e.target.name;
 		const { results } = this.state;
 		this.setState({ category }, () => {
 			if (!results[category].length) {
+				this.setState({ loading: true });
 				switch (category) {
 					case 'people':
 						this.fetchPeople();
@@ -43,7 +46,7 @@ export class Main extends Component {
 		searchApi('people')
 			.then(people => fetchHomeworld(people.results))
 			.then(people => fetchSpecies(people))
-			.then(people => this.setState({ results: { ...results, people } }))
+			.then(people => this.setState({ results: { ...results, people }, loading: false }))
 			.catch(err => console.log(err));
 	};
 
@@ -51,7 +54,7 @@ export class Main extends Component {
 		const { results } = this.state;
 		searchApi('planets')
 			.then(planets => fetchResidents(planets.results))
-			.then(planets => this.setState({ results: { ...results, planets } }))
+			.then(planets => this.setState({ results: { ...results, planets }, loading: false }))
 			.catch(err => console.log(err));
 	};
 
@@ -59,18 +62,24 @@ export class Main extends Component {
 		const { results } = this.state;
 		searchApi('vehicles')
 			.then(vehicles => vehicles.results)
-			.then(vehicles => this.setState({ results: { ...results, vehicles } }))
+			.then(vehicles => this.setState({ results: { ...results, vehicles }, loading: false }))
 			.catch(err => console.log(err));
 	};
 
 	render() {
-		const { category, results } = this.state;
+		const { category, results, loading } = this.state;
+		const display = loading ? (
+			<h3>Loading...</h3>
+		) : category ? (
+			<CardArea category={category} results={results[category]} />
+		) : null;
+
 		return (
-			<section className="Main">
+			<main className="Main">
 				<h1 className="Main-header">Swapi</h1>
 				<Options handleClick={this.handleClick} />
-				{this.state.category && <CardArea category={category} results={results[category]} />}
-			</section>
+				{display}
+			</main>
 		);
 	}
 }
