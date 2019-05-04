@@ -69,7 +69,11 @@ export class Main extends Component {
 	render() {
 		const { category, results, loading } = this.state;
 		const display = loading ? (
-			<h3>Loading...</h3>
+			<div class="App-loading">
+				<div />
+				<div />
+				<div />
+			</div>
 		) : category ? (
 			<CardArea category={category} results={results[category]} />
 		) : null;

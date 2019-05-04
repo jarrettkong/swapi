@@ -30,7 +30,11 @@ class OpeningCrawl extends Component {
 
 		const episodeNumber = `Episode ${this.getRomanNumeral(episode)}`;
 		const display = this.state.loading ? (
-			<h3>Loading...</h3>
+			<div class="App-loading">
+				<div />
+				<div />
+				<div />
+			</div>
 		) : (
 			<div className="OpeningCrawl-text">
 				<p className="OpeningCrawl-episde">{episodeNumber}</p>
