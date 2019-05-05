@@ -1,3 +1,17 @@
+.Main {
+	padding: 0;
+	max-width: 1300px;
+	margin: 0 auto;
+}
+
 .Main-header {
-	font-family: 'STARWARS', serif;
+	margin: 0;
+	& img {
+		display: inline;
+		content: url('../../util/images/logo-transparent.png');
+	}
+}
+
+.Main-loader-wrapper {
+	margin-top: 50px;
 }

@@ -4,7 +4,6 @@ import './_CardArea.scss';
 
 const CardArea = props => {
 	const { results } = props;
-
 	const cards = results.map((result, i) => {
 		return <Card key={i} info={result} />;
 	});

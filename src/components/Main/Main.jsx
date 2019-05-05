@@ -18,8 +18,6 @@ export class Main extends Component {
 		showFavorites: false
 	};
 
-	componentDidMount() {}
-
 	handleClick = e => {
 		const category = e.target.name;
 		const { results } = this.state;
@@ -74,14 +72,18 @@ export class Main extends Component {
 	render() {
 		const { category, results, loading } = this.state;
 		const display = loading ? (
-			<Loader />
+			<div className="Main-loader-wrapper">
+				<Loader />
+			</div>
 		) : category ? (
 			<CardArea category={category} results={results[category]} />
 		) : null;
 
 		return (
 			<main className="Main">
-				<h1 className="Main-header">Swapi</h1>
+				<h1 className="Main-header">
+					<img src="" alt="swapi-box logo" />
+				</h1>
 				<Options handleClick={this.handleClick} />
 				{display}
 			</main>

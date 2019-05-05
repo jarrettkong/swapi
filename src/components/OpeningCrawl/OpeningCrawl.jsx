@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { fetchMovie } from '../../util/api';
 import Loader from '../Loader/Loader';
 import './_OpeningCrawl.scss';
+import Crawl from 'react-star-wars-crawl';
+import 'react-star-wars-crawl/lib/index.css';
 
 class OpeningCrawl extends Component {
 	state = {
@@ -33,12 +35,11 @@ class OpeningCrawl extends Component {
 		const display = this.state.loading ? (
 			<Loader />
 		) : (
-			<div className="OpeningCrawl-text">
-				<p className="OpeningCrawl-episde">{episodeNumber}</p>
-				<p className="OpeningCrawl-title">{title}</p>
-				<p>{openingCrawl}</p>
-				<p className="OpeningCrawl-release">{releaseDate}</p>
-			</div>
+			<section>
+
+			<Crawl title={episodeNumber} subTitle={title} text={`${openingCrawl} | ${releaseDate}`} />
+			<button className="OpeningCrawl-skip-btn" onClick={this.props.toggleCrawl}>Skip Crawl</button>
+			</section>
 		);
 
 		return <aside className="OpeningCrawl">{display}</aside>;

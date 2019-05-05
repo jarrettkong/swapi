@@ -4,7 +4,7 @@ export const cleanPeople = people => {
       'Name': person.name,
 			'Species': person.species.name,
 			'Homeworld': person.homeworld.name,
-			'Population': person.homeworld.population,
+			'Population of Homeworld': person.homeworld.population,
 			favorite: false
 		};
 	});
@@ -17,7 +17,7 @@ export const cleanPlanets = planets => {
       'Population': planet.population,
       'Climate': planet.climate,
       'Terrain': planet.terrain,
-      'Residents': planet.residents.join(', '),
+      'Residents': planet.residents.join(', ') || 'N/A',
 			favorite: false
 		};
 	});
