@@ -1,12 +1,11 @@
 import React from 'react';
-import Planet from './Planet';
+import Card from './Card';
 import { shallow } from 'enzyme';
-import { mockPlanet } from '../../util/mockData';
 
-describe('Planet', () => {
+describe('Card', () => {
 	let wrapper;
 	beforeEach(() => {
-		wrapper = shallow(<Planet result={mockPlanet} />);
+		wrapper = shallow(<Card />);
 	});
 
 	it('should match the snapshot', () => {
