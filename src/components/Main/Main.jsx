@@ -3,6 +3,7 @@ import Options from '../Options/Options';
 import CardArea from '../CardArea/CardArea';
 import Loader from '../Loader/Loader';
 import { fetchHomeworld, fetchSpecies, searchApi, fetchResidents } from '../../util/api';
+import { cleanPeople, cleanPlanets, cleanVehicles } from '../../util/cleaners';
 import './_Main.scss';
 
 export class Main extends Component {
@@ -47,6 +48,7 @@ export class Main extends Component {
 		searchApi('people')
 			.then(people => fetchHomeworld(people.results))
 			.then(people => fetchSpecies(people))
+			.then(people => cleanPeople(people))
 			.then(people => this.setState({ results: { ...results, people }, loading: false }))
 			.catch(err => console.log(err));
 	};
@@ -55,6 +57,7 @@ export class Main extends Component {
 		const { results } = this.state;
 		searchApi('planets')
 			.then(planets => fetchResidents(planets.results))
+			.then(planets => cleanPlanets(planets))
 			.then(planets => this.setState({ results: { ...results, planets }, loading: false }))
 			.catch(err => console.log(err));
 	};
@@ -63,6 +66,7 @@ export class Main extends Component {
 		const { results } = this.state;
 		searchApi('vehicles')
 			.then(vehicles => vehicles.results)
+			.then(vehicles => cleanVehicles(vehicles))
 			.then(vehicles => this.setState({ results: { ...results, vehicles }, loading: false }))
 			.catch(err => console.log(err));
 	};
