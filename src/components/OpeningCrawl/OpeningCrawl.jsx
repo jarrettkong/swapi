@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { fetchMovie } from '../../util/api';
 import Loader from '../Loader/Loader';
 import './_OpeningCrawl.scss';
@@ -46,5 +47,9 @@ class OpeningCrawl extends Component {
 		return <aside className="OpeningCrawl">{display}</aside>;
 	}
 }
+
+OpeningCrawl.propTypes = {
+	hideCrawl: PropTypes.func
+};
 
 export default OpeningCrawl;
