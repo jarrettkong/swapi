@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './_Card.scss';
 
 const Card = props => {
@@ -25,6 +26,11 @@ const Card = props => {
 			</div>
 		</article>
 	);
+};
+
+Card.propTypes = {
+	info: PropTypes.object,
+	toggleFavorite: PropTypes.func
 };
 
 export default Card;

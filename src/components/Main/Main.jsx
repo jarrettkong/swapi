@@ -96,7 +96,7 @@ export class Main extends Component {
 			</div>
 		) : category ? (
 			<CardArea category={category} results={results[category]} toggleFavorite={this.toggleFavorite} />
-		) : null;
+		) : <h3>There's nothing here!</h3>;
 
 		return (
 			<main className="Main">
@@ -105,7 +105,7 @@ export class Main extends Component {
 						<img src="" alt="swapi-box logo" />
 					</h1>
 					<Options handleClick={this.handleClick} />
-					<button className="Options-btn" onClick={this.showFavorites}>Show {this.state.results.favorites.length} Favorites</button>
+					<button onClick={this.showFavorites}>Show {this.state.results.favorites.length} Favorites</button>
 				</nav>
 				{display}
 			</main>
