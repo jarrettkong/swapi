@@ -11,7 +11,8 @@ export class Main extends Component {
 		results: {
 			people: [],
 			planets: [],
-			vehicles: []
+			vehicles: [],
+			favorites: []
 		},
 		error: '',
 		loading: false,
@@ -19,10 +20,15 @@ export class Main extends Component {
 		showFavorites: false
 	};
 
+	componentDidMount() {
+		const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+		this.setState({ results: { ...this.state.results, favorites } });
+	}
+
 	handleClick = e => {
 		const category = e.target.name;
 		const { results } = this.state;
-		this.setState({ category }, () => {
+		this.setState({ category, showFavorites: false }, () => {
 			if (!results[category].length) {
 				this.setState({ loading: true }, () => {
 					if (category === 'people') {
@@ -34,6 +40,23 @@ export class Main extends Component {
 					}
 				});
 			}
+		});
+	};
+
+	showFavorites = () => {
+		this.setState({ showFavorites: !this.state.showFavorites }, () => {
+			this.setState({ category: this.state.showFavorites ? 'favorites' : '' });
+		});
+	};
+
+	toggleFavorite = name => {
+		const { results, category } = this.state;
+		const favorites = [...this.state.results.favorites];
+		const itemToFavorite = results[category].find(result => result['Name'] === name);
+		itemToFavorite.favorite = !itemToFavorite.favorite;
+		itemToFavorite.favorite ? favorites.push(itemToFavorite) : favorites.splice(favorites.indexOf(itemToFavorite), 1);
+		this.setState({ results: { ...results, favorites } }, () => {
+			localStorage.favorites = JSON.stringify(favorites);
 		});
 	};
 
@@ -72,7 +95,7 @@ export class Main extends Component {
 				<Loader />
 			</div>
 		) : category ? (
-			<CardArea category={category} results={results[category]} />
+			<CardArea category={category} results={results[category]} toggleFavorite={this.toggleFavorite} />
 		) : null;
 
 		return (
@@ -81,7 +104,8 @@ export class Main extends Component {
 					<h1 className="Main-header">
 						<img src="" alt="swapi-box logo" />
 					</h1>
-				<Options handleClick={this.handleClick} />
+					<Options handleClick={this.handleClick} />
+					<button className="Options-btn" onClick={this.showFavorites}>Show {this.state.results.favorites.length} Favorites</button>
 				</nav>
 				{display}
 			</main>

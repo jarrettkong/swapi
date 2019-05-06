@@ -17,7 +17,8 @@ describe('Main', () => {
 			results: {
 				people: [],
 				planets: [],
-				vehicles: []
+				vehicles: [],
+				favorites: []
 			},
 			error: '',
 			loading: false,
@@ -31,5 +32,6 @@ describe('Main', () => {
 		const e = { target: { name: 'people' } };
 		wrapper.instance().handleClick(e);
 		expect(wrapper.state('category')).toEqual('people');
+		expect(wrapper.state('showFavorites')).toEqual(false);
 	});
 });
