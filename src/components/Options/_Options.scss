@@ -9,12 +9,12 @@
 
 .Options-btn {
 	background: transparent;
-	border: 1px solid $main-copy-color;
-	color: $main-copy-color;
-	padding: 20px;
+	border: 1px solid white;
+	color: white;
+	padding: 10px;
 	margin: 0 20px;
 	border-radius: 5px;
-	font-size: 40px;
+	font-size: 30px;
 	display: flex;
 	flex-direction: dolumn;
 	align-items: center;
@@ -24,20 +24,21 @@
 	}
 }
 
+.Options-btn img {
+	height: 50px;
+}
+
 .people-option img {
 	content: url('../../util/icons/kylo_ren.svg');
-	height: 75px;
 	margin-right: 25px;
 }
 
 .planets-option img {
 	content: url('../../util/icons/geonosis.svg');
-	height: 75px;
 	margin-right: 25px;
 }
 
 .vehicles-option img {
 	content: url('../../util/icons/x_wing.svg');
-	height: 75px;
 	margin-right: 25px;
 }

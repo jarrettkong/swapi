@@ -3,5 +3,8 @@
 .App {
 	text-align: center;
 	color: #403a3b;
-	height: 100%;
+	min-height: 100vh;
+	margin: auto;
+	background-color: $main-color;
+	color: white;
 }

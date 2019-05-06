@@ -12,12 +12,14 @@ class App extends Component {
 		this.setState({ showCrawl: true });
 	}
 
-	toggleCrawl = () => {
-		this.setState({ showCrawl: !this.state.showCrawl });
+	hideCrawl = () => {
+		this.setState({ showCrawl: false });
 	};
 
 	render() {
-		return <section className="App">{this.state.showCrawl ? <OpeningCrawl toggleCrawl={this.toggleCrawl} /> : <Main />}</section>;
+		return (
+			<section className="App">{this.state.showCrawl ? <OpeningCrawl hideCrawl={this.hideCrawl} /> : <Main />}</section>
+		);
 	}
 }
 

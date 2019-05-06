@@ -1,7 +1,9 @@
+@import '../../util/colors';
+
 .CardArea {
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	max-height: 80vh;
+	grid-template-columns: repeat(2, 1fr);
 	grid-gap: 20px;
-	padding: 20px;
+	padding: 20px 25px;
+	background-color: $background-color;
 }

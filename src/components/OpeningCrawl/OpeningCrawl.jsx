@@ -36,9 +36,10 @@ class OpeningCrawl extends Component {
 			<Loader />
 		) : (
 			<section>
-
-			<Crawl title={episodeNumber} subTitle={title} text={`${openingCrawl} | ${releaseDate}`} />
-			<button className="OpeningCrawl-skip-btn" onClick={this.props.toggleCrawl}>Skip Crawl</button>
+				<Crawl title={episodeNumber} subTitle={title} text={`${openingCrawl} | ${releaseDate}`} />
+				<button className="OpeningCrawl-skip-btn" onClick={this.props.hideCrawl}>
+					Hide Crawl
+				</button>
 			</section>
 		);
 

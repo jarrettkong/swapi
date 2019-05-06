@@ -1,7 +1,18 @@
+@import '../../util/colors';
+
 .Main {
 	padding: 0;
 	max-width: 1300px;
 	margin: 0 auto;
+	background-color: $background-color;
+	height: 100vh;
+}
+
+nav {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 25px 10px 0 10px;
 }
 
 .Main-header {

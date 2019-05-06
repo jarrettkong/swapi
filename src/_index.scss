@@ -1,3 +1,5 @@
+@import './util/_colors.scss';
+
 *,
 *::before,
 *::after {
@@ -9,8 +11,8 @@ body {
 	margin: 0;
 	padding: 0;
 	font-family: "Roboto", sans-serif;
-	height: 100vh;
+	min-height: 100vh;
 	width: 100vw;
 	font-size: 16px;
-	color: white;
+	background-color: $main-color;
 }
