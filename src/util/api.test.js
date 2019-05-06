@@ -11,13 +11,11 @@ import {
 } from './mockData';
 
 describe('searchApi', () => {
-	let mockResponse;
 	beforeEach(() => {
-		mockResponse = [mockPlanet, mockPlanet, mockPlanet];
 		window.fetch = jest.fn().mockImplementation(() => {
 			return Promise.resolve({
 				ok: true,
-				json: () => Promise.resolve(mockResponse)
+				json: () => Promise.resolve(mockPlanets)
 			});
 		});
 	});
@@ -32,7 +30,7 @@ describe('searchApi', () => {
 	it('should return a parsed version of the result on success', async () => {
 		const term = 'planet';
 		const received = await searchApi(term);
-		expect(received).toEqual(mockResponse);
+		expect(received).toEqual(mockPlanets);
 	});
 
 	it('should throw an error on fail', async () => {

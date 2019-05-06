@@ -1,3 +1,21 @@
+@import '../../util/_colors.scss';
+
 .OpeningCrawl {
-  background-color: #a9a9a9;
+	height: 100vh;
+	position: relative;
+	overflow: hidden;
+	& button {
+		position: absolute;
+		border: 2px solid $star-wars-yellow;
+		padding: 5px;
+		background-color: transparent;
+		color: $star-wars-yellow;
+		cursor: pointer;
+		z-index: 10;
+		top: 25px;
+		left: 25px;
+		font-size: 35px;
+		border-radius: 3px;
+		text-transform: uppercase;
+	}
 }

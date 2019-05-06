@@ -146,3 +146,5 @@ export const mockVehicle = {
 	edited: '2014-12-22T18:21:15.523587Z',
 	url: 'https://swapi.co/api/vehicles/4/'
 };
+
+export const mockVehicles = [mockVehicle, mockVehicle, mockVehicle];

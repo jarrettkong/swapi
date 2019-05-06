@@ -19,6 +19,7 @@ describe('Main', () => {
 				planets: [],
 				vehicles: []
 			},
+			error: '',
 			loading: false,
 			category: '',
 			showFavorites: false

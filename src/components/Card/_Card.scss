@@ -1,4 +1,57 @@
+@import '../../util/colors';
+
 .Card {
-  padding: 10px;
-  border: 1px solid white;
+	padding: 10px;
+	background-color: white;
+	color: black;
+	text-align: left;
+	border-radius: 2px;
+	box-shadow: 0 0 5px black;
+
+	& hr {
+		border-style: none;
+		border-bottom: 1px solid $main-color;
+	}
+}
+
+.Card-header {
+	position: relative;
+}
+
+.Card-favorite-btn {
+  position: absolute;
+  top: 3px;
+  font-size: 20px;
+  right: 0;
+	background-color: transparent;
+  border: 0;
+  cursor:pointer;
+  
+  &:hover {
+    color: $favorite-color;
+  }
+}
+
+.Card-data {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	margin: 15px 0;
+}
+
+.Card-title {
+	margin: 0;
+	font-size: 25px;
+}
+
+.Card-prop {
+	font-weight: 600;
+	margin-right: 50px;
+	color: $empire-blue;
+}
+
+.Card-value {
+	font-weight: 300;
+	text-align: right;
+	color: $light-grey;
 }

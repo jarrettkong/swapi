@@ -13,32 +13,26 @@ export class Main extends Component {
 			planets: [],
 			vehicles: []
 		},
+		error: '',
 		loading: false,
 		category: '',
 		showFavorites: false
 	};
-
-	componentDidMount() {}
 
 	handleClick = e => {
 		const category = e.target.name;
 		const { results } = this.state;
 		this.setState({ category }, () => {
 			if (!results[category].length) {
-				this.setState({ loading: true });
-				switch (category) {
-					case 'people':
+				this.setState({ loading: true }, () => {
+					if (category === 'people') {
 						this.fetchPeople();
-						break;
-					case 'planets':
+					} else if (category === 'planets') {
 						this.fetchPlanets();
-						break;
-					case 'vehicles':
+					} else {
 						this.fetchVehicles();
-						break;
-					default:
-						break;
-				}
+					}
+				});
 			}
 		});
 	};
@@ -50,7 +44,7 @@ export class Main extends Component {
 			.then(people => fetchSpecies(people))
 			.then(people => cleanPeople(people))
 			.then(people => this.setState({ results: { ...results, people }, loading: false }))
-			.catch(err => console.log(err));
+			.catch(error => this.setState({ error }));
 	};
 
 	fetchPlanets = () => {
@@ -59,7 +53,7 @@ export class Main extends Component {
 			.then(planets => fetchResidents(planets.results))
 			.then(planets => cleanPlanets(planets))
 			.then(planets => this.setState({ results: { ...results, planets }, loading: false }))
-			.catch(err => console.log(err));
+			.catch(error => this.setState({ error }));
 	};
 
 	fetchVehicles = () => {
@@ -68,21 +62,27 @@ export class Main extends Component {
 			.then(vehicles => vehicles.results)
 			.then(vehicles => cleanVehicles(vehicles))
 			.then(vehicles => this.setState({ results: { ...results, vehicles }, loading: false }))
-			.catch(err => console.log(err));
+			.catch(error => this.setState({ error }));
 	};
 
 	render() {
 		const { category, results, loading } = this.state;
 		const display = loading ? (
-			<Loader />
+			<div className="Main-loader-wrapper">
+				<Loader />
+			</div>
 		) : category ? (
 			<CardArea category={category} results={results[category]} />
 		) : null;
 
 		return (
 			<main className="Main">
-				<h1 className="Main-header">Swapi</h1>
+				<nav>
+					<h1 className="Main-header">
+						<img src="" alt="swapi-box logo" />
+					</h1>
 				<Options handleClick={this.handleClick} />
+				</nav>
 				{display}
 			</main>
 		);

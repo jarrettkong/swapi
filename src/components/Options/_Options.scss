@@ -1,16 +1,44 @@
+@import '../../util/colors';
+
 .Options {
-	border: 1px solid red;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0;
 }
 
 .Options-btn {
 	background: transparent;
 	border: 1px solid white;
 	color: white;
-	margin: 0 25px;
-	padding: 50px;
-	font-size: 40px;
+	padding: 10px;
+	margin: 0 20px;
+	border-radius: 5px;
+	font-size: 30px;
+	display: flex;
+	flex-direction: dolumn;
+	align-items: center;
 	cursor: pointer;
 	&:focus {
 		outline: transparent;
 	}
+}
+
+.Options-btn img {
+	height: 50px;
+}
+
+.people-option img {
+	content: url('../../util/icons/kylo_ren.svg');
+	margin-right: 25px;
+}
+
+.planets-option img {
+	content: url('../../util/icons/geonosis.svg');
+	margin-right: 25px;
+}
+
+.vehicles-option img {
+	content: url('../../util/icons/x_wing.svg');
+	margin-right: 25px;
 }
