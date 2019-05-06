@@ -1,6 +1,7 @@
 export const cleanPeople = people => {
 	return people.map(person => {
 		return {
+			id: person.created,
 			Name: person.name,
 			Species: person.species.name,
 			Homeworld: person.homeworld.name,
@@ -13,6 +14,7 @@ export const cleanPeople = people => {
 export const cleanPlanets = planets => {
 	return planets.map(planet => {
 		return {
+			id: planet.created,
 			Name: planet.name,
 			Population: planet.population,
 			Climate: planet.climate,
@@ -26,6 +28,7 @@ export const cleanPlanets = planets => {
 export const cleanVehicles = vehicles => {
 	return vehicles.map(vehicle => {
 		return {
+			id: vehicle.created,
 			Name: vehicle.name,
 			Model: vehicle.model,
 			Class: vehicle.vehicle_class,

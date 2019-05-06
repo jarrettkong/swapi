@@ -23,6 +23,7 @@ export class Main extends Component {
 	componentDidMount() {
 		const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 		this.setState({ results: { ...this.state.results, favorites } });
+		//merge favs with results
 	}
 
 	handleClick = e => {
@@ -49,12 +50,14 @@ export class Main extends Component {
 		});
 	};
 
-	toggleFavorite = name => {
+	toggleFavorite = id => {
 		const { results, category } = this.state;
-		const favorites = [...this.state.results.favorites];
-		const itemToFavorite = results[category].find(result => result['Name'] === name);
+		let favorites;
+		const itemToFavorite = results[category].find(result => result.id === id);
 		itemToFavorite.favorite = !itemToFavorite.favorite;
-		itemToFavorite.favorite ? favorites.push(itemToFavorite) : favorites.splice(favorites.indexOf(itemToFavorite), 1);
+		itemToFavorite.favorite
+			? (favorites = [...results.favorites, itemToFavorite])
+			: (favorites = results.favorites.filter(fav => fav.id !== id));
 		this.setState({ results: { ...results, favorites } }, () => {
 			localStorage.favorites = JSON.stringify(favorites);
 		});

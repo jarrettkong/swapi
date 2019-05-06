@@ -34,4 +34,5 @@ describe('Main', () => {
 		expect(wrapper.state('category')).toEqual('people');
 		expect(wrapper.state('showFavorites')).toEqual(false);
 	});
+	
 });

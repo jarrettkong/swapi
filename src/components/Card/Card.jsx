@@ -4,14 +4,13 @@ import './_Card.scss';
 
 const Card = props => {
 	const keys = Object.keys(props.info);
-	const info = keys.slice(1, keys.length - 1);
-	const name = props.info['Name'];
+	const info = keys.slice(2, keys.length - 1);
 
 	return (
 		<article className="Card">
 			<div className="Card-header">
-				<h3 className="Card-title">{name}</h3>
-				<button className="Card-favorite-btn" onClick={() => props.toggleFavorite(name)}>
+				<h3 className="Card-title">{props.info['Name']}</h3>
+				<button className="Card-favorite-btn" onClick={() => props.toggleFavorite(props.info.id)}>
 					<i className={`fab fa-rebel ${props.info.favorite ? 'favorited' : null}`} />
 				</button>
 			</div>
