@@ -39,7 +39,7 @@ describe('cleanPlanets', () => {
 				Climate: 'arid',
 				Terrain: 'desert',
 				Residents:
-					'https://swapi.co/api/people/1/, https://swapi.co/api/people/2/, https://swapi.co/api/people/4/, https://swapi.co/api/people/6/, https://swapi.co/api/people/7/, https://swapi.co/api/people/8/, https: swapi.co/api/people/9/, https://swapi.co/api/people/11/, https://swapi.co/api/people/43/, https://swapi.co/api/people/62/',
+					'https://swapi.co/api/people/1/, https://swapi.co/api/people/2/, https://swapi.co/api/people/4/, https://swapi.co/api/people/6/, https://swapi.co/api/people/7/, https://swapi.co/api/people/8/, https:swapi.co/api/people/9/, https://swapi.co/api/people/11/, https://swapi.co/api/people/43/, https://swapi.co/api/people/62/',
 				favorite: false
 			},
 			{
@@ -48,7 +48,7 @@ describe('cleanPlanets', () => {
 				Climate: 'arid',
 				Terrain: 'desert',
 				Residents:
-					'https://swapi.co/api/people/1/, https://swapi.co/api/people/2/, https://swapi.co/api/people/4/, https://swapi.co/api/people/6/, https://swapi.co/api/people/7/, https://swapi.co/api/people/8/, https: swapi.co/api/people/9/, https://swapi.co/api/people/11/, https://swapi.co/api/people/43/, https://swapi.co/api/people/62/',
+					'https://swapi.co/api/people/1/, https://swapi.co/api/people/2/, https://swapi.co/api/people/4/, https://swapi.co/api/people/6/, https://swapi.co/api/people/7/, https://swapi.co/api/people/8/, https:swapi.co/api/people/9/, https://swapi.co/api/people/11/, https://swapi.co/api/people/43/, https://swapi.co/api/people/62/',
 				favorite: false
 			},
 			{
@@ -57,7 +57,7 @@ describe('cleanPlanets', () => {
 				Climate: 'arid',
 				Terrain: 'desert',
 				Residents:
-					'https://swapi.co/api/people/1/, https://swapi.co/api/people/2/, https://swapi.co/api/people/4/, https://swapi.co/api/people/6/, https://swapi.co/api/people/7/, https://swapi.co/api/people/8/, https: swapi.co/api/people/9/, https://swapi.co/api/people/11/, https://swapi.co/api/people/43/, https://swapi.co/api/people/62/',
+					'https://swapi.co/api/people/1/, https://swapi.co/api/people/2/, https://swapi.co/api/people/4/, https://swapi.co/api/people/6/, https://swapi.co/api/people/7/, https://swapi.co/api/people/8/, https:swapi.co/api/people/9/, https://swapi.co/api/people/11/, https://swapi.co/api/people/43/, https://swapi.co/api/people/62/',
 				favorite: false
 			}
 		];
@@ -72,21 +72,21 @@ describe('cleanVehicles', () => {
 				Name: 'Sand Crawler',
 				Model: 'Digger Crawler',
 				Class: 'wheeled',
-				Passengers: 30,
+				Passengers: '30',
 				favorite: false
 			},
 			{
 				Name: 'Sand Crawler',
 				Model: 'Digger Crawler',
 				Class: 'wheeled',
-				Passengers: 30,
+				Passengers: '30',
 				favorite: false
 			},
 			{
 				Name: 'Sand Crawler',
 				Model: 'Digger Crawler',
 				Class: 'wheeled',
-				Passengers: 30,
+				Passengers: '30',
 				favorite: false
 			}
 		];
