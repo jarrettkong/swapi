@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/swapi/static/css/main.bc862548.chunk.css",
+    "main.js": "/swapi/static/js/main.37ece014.chunk.js",
+    "main.js.map": "/swapi/static/js/main.37ece014.chunk.js.map",
+    "runtime~main.js": "/swapi/static/js/runtime~main.3fb9cbf6.js",
+    "runtime~main.js.map": "/swapi/static/js/runtime~main.3fb9cbf6.js.map",
+    "static/css/2.d1f26340.chunk.css": "/swapi/static/css/2.d1f26340.chunk.css",
+    "static/js/2.de7bef2e.chunk.js": "/swapi/static/js/2.de7bef2e.chunk.js",
+    "static/js/2.de7bef2e.chunk.js.map": "/swapi/static/js/2.de7bef2e.chunk.js.map",
+    "index.html": "/swapi/index.html",
+    "precache-manifest.0e0ebcb843368e86093242dec8fece4c.js": "/swapi/precache-manifest.0e0ebcb843368e86093242dec8fece4c.js",
+    "service-worker.js": "/swapi/service-worker.js",
+    "static/css/2.d1f26340.chunk.css.map": "/swapi/static/css/2.d1f26340.chunk.css.map",
+    "static/css/main.bc862548.chunk.css.map": "/swapi/static/css/main.bc862548.chunk.css.map",
+    "static/media/_Options.scss": "/swapi/static/media/x_wing.a4d41e98.svg",
+    "static/media/_Main.scss": "/swapi/static/media/logo-transparent.9dca3b66.png"
+  }
+}
